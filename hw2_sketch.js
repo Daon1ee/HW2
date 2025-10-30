@@ -54,7 +54,15 @@ function preload() {
     );
   }
 }
-
+// =================================================================
+// ============== Start BGM ========================================
+function startBGM() {
+  if (hasBgm && bgm && !bgm.isPlaying()) {
+    bgm.setLoop(true);
+    bgm.setVolume(0);
+    bgm.play();
+  }
+}
 
 // ========== Setup ===================
 function setup() {
@@ -64,17 +72,27 @@ function setup() {
   backButton    = new UIButton(width - 240, 12, 100, 32, "<-");
 
   // try to start BGM (safe guard)
+     const arm = () => {
     try {
+      if (typeof getAudioContext === "function" &&
+          getAudioContext().state !== "running") {
+        userStartAudio(); // p5 유틸
+      }
+    } catch (e) {}
+    startBGM();
+    window.removeEventListener("pointerdown", arm);
+    window.removeEventListener("keydown", arm);
+  };
+  window.addEventListener("pointerdown", arm, { once: true });
+  window.addEventListener("keydown", arm, { once: true });
+
+  try {
     if (typeof getAudioContext === "function" &&
-        getAudioContext().state === "running" &&
-        hasBgm && bgm && !bgm.isPlaying()) {
-      bgm.setLoop(true);
-      bgm.setVolume(0);
-      bgm.play();
+        getAudioContext().state === "running") {
+      startBGM();
     }
   } catch (e) {}
 }
-
 // ========== draw ====================
 function draw() {
   background(255);
@@ -149,6 +167,15 @@ function draw() {
 
 // ========== Key pressed ==========
 function keyPressed() {
+  //Audio
+    try {
+    if (typeof getAudioContext === "function" &&
+        getAudioContext().state !== "running") {
+      userStartAudio();
+    }
+  } catch (e) {}
+  startBGM();
+  
   // cleared → go next or restart
   if (gameState === GAME_CLEARED) {
     if (stage === 1) {
