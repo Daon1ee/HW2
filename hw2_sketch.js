@@ -41,7 +41,7 @@ let bgm;
 let bgmCurrent = 0.0, bgmTarget = 0.0;
 const BGM_MAX = 0.6;
 let hasBgm = false; // guard if file is missing
-const AUDIO_SRC = "bgm.mp3";
+const AUDIO_SRC = "https://daon1ee.github.io/HW2/bgm.mp3";
 
 // (Optional) Try to load in preload so it's ready by setup
 function preload() {
