@@ -41,20 +41,20 @@ let bgm;
 let bgmCurrent = 0.0, bgmTarget = 0.0;
 const BGM_MAX = 0.6;
 let hasBgm = false; // guard if file is missing
+const AUDIO_SRC = "bgm.mp3";
 
 // (Optional) Try to load in preload so it's ready by setup
 function preload() {
+  if (typeof soundFormats === "function") soundFormats("mp3", "ogg");
   if (typeof loadSound === "function") {
-    try {
-      bgm = loadSound("bgm.mp3",
-        () => { hasBgm = true; },
-        () => { hasBgm = false; }
-      );
-    } catch (e) {
-      hasBgm = false;
-    }
+    bgm = loadSound(
+      AUDIO_SRC,
+      () => { hasBgm = true; },           
+      () => { hasBgm = false; }          
+    );
   }
 }
+
 
 // ========== Setup ===================
 function setup() {
@@ -64,14 +64,15 @@ function setup() {
   backButton    = new UIButton(width - 240, 12, 100, 32, "<-");
 
   // try to start BGM (safe guard)
-  try {
-    if (hasBgm && bgm) {
-      if (!bgm.isPlaying()) bgm.loop();
-      bgm.amp(0);
+    try {
+    if (typeof getAudioContext === "function" &&
+        getAudioContext().state === "running" &&
+        hasBgm && bgm && !bgm.isPlaying()) {
+      bgm.setLoop(true);
+      bgm.setVolume(0);
+      bgm.play();
     }
-  } catch (e) {
-    hasBgm = false;
-  }
+  } catch (e) {}
 }
 
 // ========== draw ====================
@@ -138,11 +139,11 @@ function draw() {
 
   // --- BGM fade ---
   if (hasBgm && bgm) {
-    if (gameState === GAME_PLAYING) bgmTarget = BGM_MAX;
+    if (gameState === GAME_PLAYING)      bgmTarget = BGM_MAX;
     else if (gameState === GAME_CLEARED) bgmTarget = 0.35;
-    else bgmTarget = 0.0;
+    else                                 bgmTarget = 0.0;
     bgmCurrent = lerp(bgmCurrent, bgmTarget, 0.08);
-    bgm.amp(bgmCurrent);
+    bgm.setVolume(bgmCurrent);
   }
 }
 
