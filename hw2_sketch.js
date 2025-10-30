@@ -76,7 +76,7 @@ function setup() {
     try {
       if (typeof getAudioContext === "function" &&
           getAudioContext().state !== "running") {
-        userStartAudio(); // p5 유틸
+        userStartAudio(); 
       }
     } catch (e) {}
     startBGM();
