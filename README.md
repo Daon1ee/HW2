@@ -18,4 +18,36 @@ Single-player 2D auto-jump platformer that explores <b> randomness, constraints,
 - Stages: 1 (tutorial) → 2 (procedural/randomized hazards)
 
 # ✨ Project Overview
-  
+<b> 🎲 Randomness (≥ 2 meaningful elements) </b>  
+1.	Procedural hazards (Stage 2)  
+- Spikes: random positions, periodic up/down with random phase.  
+- Holes: random width/position per platform; each has random period, open duration, and phase.  
+2.	Probabilistic double-jump  
+- On landing, the next jump may schedule a double-jump with a random delay; a subtle ring telegraphs the timing.
+
+# 🚧 Constraints (clear boundaries & rules)  
+- Screen clamping with constrain, gravity, auto-jump only when grounded.
+- Platforms/goal/hazards define navigable vs. forbidden space.
+
+# 💥 Collision Detection (distinct outcomes)
+- Ball ↔ Platform: landing/grounding (disabled over open holes)  
+- Ball ↔ Spike: Game Over  
+- Ball ↔ Goal: Stage Cleared  
+
+# 👤 Player Mode
+- Single-player
+
+# 🧠 Game States
+- Active / Paused / Stage Cleared / Game Over  
+(On the web, the first user input acts as a lightweight “start gate” due to audio policy.)
+
+# 👀 Visual Feedback
+- State overlays, timed spike animation, hole open/close, control HUD.
+
+
+# 🎵 Audio (Research Component)
+- Implemented: Background music bgm.mp3 that responds to game state.
+
+    
+---------------------------------------------------------------------------------------
+# 📝 Design & Research Notes
