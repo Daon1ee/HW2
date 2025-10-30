@@ -51,3 +51,8 @@ Single-player 2D auto-jump platformer that explores <b> randomness, constraints,
     
 ---------------------------------------------------------------------------------------
 # 📝 Design & Research Notes
+- millis(): https://processing.org/reference/millis_.html
+- random(): https://processing.org/reference/random_.html
+- Library index: https://processing.org/reference/libraries/sound/
+- SoundFile (play/loop/amp): https://processing.org/reference/libraries/sound/SoundFile.html
+- Collision Detection: https://www.jeffreythompson.org/collision-detection/table_of_contents.php?utm_source=chatgpt.com
