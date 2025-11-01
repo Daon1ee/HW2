@@ -1,3 +1,4 @@
+// ===================================== main  ====================================
 // ========== Global lists ==========
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Spike> spikes = new ArrayList<Spike>();
