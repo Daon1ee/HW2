@@ -55,4 +55,9 @@ Single-player 2D auto-jump platformer that explores <b> randomness, constraints,
 - random(): https://processing.org/reference/random_.html
 - Library index: https://processing.org/reference/libraries/sound/
 - SoundFile (play/loop/amp): https://processing.org/reference/libraries/sound/SoundFile.html
-- Collision Detection: https://www.jeffreythompson.org/collision-detection/table_of_contents.php?utm_source=chatgpt.com
+- Collision Detection: https://www.jeffreythompson.org/collision-detection/table_of_contents.php
+- Game Level: https://www.roguebasin.com/index.php/Basic_BSP_Dungeon_generation
+- https://roguebasin.com/index.php/Main_Page
+- State Transitions: https://gameprogrammingpatterns.com/state.html
+- bounce: https://processing.org/examples/bounce.html
+- bouncing ball: https://processing.org/examples/bouncingball.html
